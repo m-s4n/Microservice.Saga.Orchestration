@@ -1,0 +1,23 @@
+﻿using MassTransit;
+using Shared.Messages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shared.PaymentEvents
+{
+    public class PaymentFailedEvent : CorrelatedBy<Guid>
+    {
+        public PaymentFailedEvent(Guid correlationId)
+        {
+            CorrelationId = correlationId;
+        }
+        public Guid CorrelationId { get; }
+
+        // Ödeme neden başarısız oldu
+        public string Message { get; set; }
+        public List<OrderItemMessage> OrderItems { get; set; }
+    }
+}
